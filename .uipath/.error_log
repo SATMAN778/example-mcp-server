@@ -1,0 +1,14 @@
+
+--- Authentication Error Log 2025-09-21 16:05:11 ---
+[
+  {
+    "timestamp": "2025-09-21T10:35:10.258Z",
+    "message": "Authentication started",
+    "params": {
+      "code": "3a415bf1-ea83-474a-814c-4a69b3757593.7ADF3BA981E912ED508C8C060B80EC85400879875F79A10C673126E596C825F9",
+      "scope": "offline_access ProcessMining OrchestratorApiUserAccess StudioWebBackend IdentityServerApi ConnectionService DataService DocumentUnderstanding EnterpriseContextService Directory JamJamApi LLMGateway LLMOps OMS RCS.FolderAuthorization TM.Projects TM.TestCases TM.Requirements TM.TestSets",
+      "state": "eo4aZNnlxelnuQgcPN23U_J3kKtcSzcYbMgSJTlFnFU",
+      "iss": "https://staging.uipath.com/identity_"
+    }
+  }
+]

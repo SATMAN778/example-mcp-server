@@ -1,0 +1,138 @@
+{
+  "name": "banking-tools",
+  "version": "1.0.0",
+  "description": "Basic Banking Tools MCP Server",
+  "servers": {
+    "banking-server": {
+      "transport": "stdio",
+      "command": "python",
+      "args": ["server.py"]
+    }
+  },
+  "tools": {
+    "get_customer_info": {
+      "description": "Retrieve customer information from the database",
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Unique identifier for the customer"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "description": "Customer details including personal information, account details, and contact information"
+      }
+    },
+    "get_fund_holdings": {
+      "description": "Retrieve customer's fund holdings for a specific month",
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Unique identifier for the customer"
+        },
+        "month": {
+          "type": "string",
+          "description": "Month in YYYY-MM format",
+          "pattern": "^\\d{4}-\\d{2}$"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "total_value": {"type": "number"},
+          "positions": {"type": "array"},
+          "asset_allocation": {"type": "object"}
+        }
+      }
+    },
+    "check_credit_worthiness": {
+      "description": "Check customer's credit worthiness and sanctions status",
+      "parameters": {
+        "customer_name": {
+          "type": "string",
+          "description": "Full name of the customer"
+        },
+        "company_name": {
+          "type": "string",
+          "description": "Optional company name if customer represents a business",
+          "optional": true
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "credit_score": {"type": "number"},
+          "risk_factors": {"type": "array"},
+          "sanctions_matches": {"type": "array"},
+          "news_sentiment": {"type": "string"},
+          "last_updated": {"type": "string"}
+        }
+      }
+    },
+    "assess_customer": {
+      "description": "Perform comprehensive customer assessment",
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Unique identifier for the customer"
+        },
+        "month": {
+          "type": "string",
+          "description": "Month in YYYY-MM format",
+          "pattern": "^\\d{4}-\\d{2}$"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "customer_info": {"type": "object"},
+          "holdings": {"type": "object"},
+          "credit_assessment": {"type": "object"},
+          "risk_score": {"type": "number"},
+          "recommendations": {"type": "array"},
+          "assessment_date": {"type": "string"}
+        }
+      }
+    }
+  },
+  "requirements": {
+    "python": {
+      "packages": [
+        "fastapi",
+        "sqlalchemy",
+        "pandas",
+        "python-dotenv",
+        "asyncpg",
+        "aiohttp",
+        "uvicorn"
+      ]
+    },
+    "env": {
+      "DB_HOST": {
+        "description": "PostgreSQL database host",
+        "default": "localhost"
+      },
+      "DB_PORT": {
+        "description": "PostgreSQL database port",
+        "default": "5432"
+      },
+      "DB_NAME": {
+        "description": "Database name",
+        "default": "banking_db"
+      },
+      "DB_USER": {
+        "description": "Database username",
+        "required": true
+      },
+      "DB_PASSWORD": {
+        "description": "Database password",
+        "required": true,
+        "secret": true
+      },
+      "DATA_DIR": {
+        "description": "Directory for holdings data files",
+        "default": "data/holdings"
+      }
+    }
+  }
+}

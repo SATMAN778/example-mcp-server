@@ -1,0 +1,11 @@
+{
+    "entryPoints": [
+        {
+            "filePath": "banking-server",
+            "uniqueId": "26a15575-1e2f-41df-9072-e18c69e695b3",
+            "type": "mcpserver",
+            "input": {},
+            "output": {}
+        }
+    ]
+}
